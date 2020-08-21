@@ -1,0 +1,9 @@
+{
+  "name": "slotmachine",
+  "version": "1.0.0",
+  "description": "Assignment 4 ",
+  "main": "index.js",
+  "repository": "https://github.com/aalapan/COMP125-A4.git",
+  "author": "aalapan <aalapan@my.centennialcollege.ca>",
+  "license": "MIT"
+}
