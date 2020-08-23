@@ -35,7 +35,7 @@
 
     let playerCredits = 1000;
     let winnings = 0;
-    let jackpot = 2000;
+    let jackpot = playerCredits*25;
     let playerBet = 0;
 
 
@@ -103,8 +103,7 @@
         }
     }
 
-    /* When this function is called it determines the betLine results.
-    e.g. Bar - Orange - Banana */
+    //random reels
     function Reels():string[] {
         var betLine = [" ", " ", " "];
         var outCome = [0, 0, 0];
@@ -145,6 +144,7 @@
         return betLine;
     }
 
+    //determine prize based on reels outcome
     function determinePrize():void
     {   if(blank ==0){
         if (grapes == 3) {
@@ -187,7 +187,7 @@
             winnings = jackpot;
             }
         else if (sevens == 2) {
-            winnings = playerBet * 10;
+            winnings = playerBet * 5;
             }
         else {
             winnings - playerBet;
@@ -200,6 +200,7 @@
         }
     }
 
+    //build interface
     function buildInterface():void
     {
         // Slot Machine Background
@@ -257,6 +258,7 @@
 
     }
 
+    //add functionalities to button
     function interfaceLogic():void
     {
 
@@ -349,9 +351,10 @@
         });
     }
 
+    //you won
     function youWonMessage():void
     {
-        playerCredits - playerBet;
+        playerCredits -= playerBet;
         playerCredits += winnings;
 
         console.log("Congratulations! You won:"  + winnings);
@@ -360,20 +363,23 @@
         creditLabel.setText(playerCredits.toString());
     }
 
+    //you lost
     function youLostMessage():void
     {
-        playerCredits - playerBet;
+        playerCredits -= playerBet;
 
         console.log("Sorry! Better luck next time!");
  
         winningsLabel.setText(winnings.toString());
         creditLabel.setText(playerCredits.toString());
     }
+
+    //reset button
     function resetButtonClicked():void
     {
         playerCredits = 1000;
         winnings = 0;
-        jackpot = 5000;
+        jackpot = playerCredits * 25;
         playerBet = 0;
 
         creditLabel.setText(playerCredits.toString());
@@ -386,19 +392,25 @@
         middleReel.image = assets.getResult("blank") as HTMLImageElement;
         rightReel.image = assets.getResult("blank") as HTMLImageElement;
     }
-
+    //exit button
     function exitButtonClicked():void
     {
         window.close();
     }
 
+    function jackPotLabelUpdate():void
+    {
+        jackpot=playerCredits*25;
+        jackPotLabel.setText(jackpot.toString());
+    }
 
     // app logic goes here
     function Main():void
     {
         buildInterface();
         interfaceLogic();
-        resetButtonClicked();
+        resetButtonClicked();   
+        jackPotLabelUpdate();
        
     }
 

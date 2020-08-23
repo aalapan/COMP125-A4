@@ -31,7 +31,7 @@
     var blank = 0;
     var playerCredits = 1000;
     var winnings = 0;
-    var jackpot = 2000;
+    var jackpot = playerCredits * 25;
     var playerBet = 0;
     var manifest = [
         { id: "background", src: "./Assets/images/background.png" },
@@ -84,8 +84,7 @@
             return !value;
         }
     }
-    /* When this function is called it determines the betLine results.
-    e.g. Bar - Orange - Banana */
+    //random reels
     function Reels() {
         var betLine = [" ", " ", " "];
         var outCome = [0, 0, 0];
@@ -124,6 +123,7 @@
         }
         return betLine;
     }
+    //determine prize based on reels outcome
     function determinePrize() {
         if (blank == 0) {
             if (grapes == 3) {
@@ -166,7 +166,7 @@
                 winnings = jackpot;
             }
             else if (sevens == 2) {
-                winnings = playerBet * 10;
+                winnings = playerBet * 5;
             }
             else {
                 winnings - playerBet;
@@ -177,6 +177,7 @@
             youLostMessage();
         }
     }
+    //build interface
     function buildInterface() {
         // Slot Machine Background
         slotMachineBackground = new Core.GameObject("background", Config.Screen.CENTER_X, Config.Screen.CENTER_Y, true);
@@ -216,6 +217,7 @@
         betLine = new Core.GameObject("bet_line", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 12, true);
         stage.addChild(betLine);
     }
+    //add functionalities to button
     function interfaceLogic() {
         spinButton.on("click", function () {
             winningsLabel.setText("0");
@@ -286,23 +288,26 @@
             exitButtonClicked();
         });
     }
+    //you won
     function youWonMessage() {
-        playerCredits - playerBet;
+        playerCredits -= playerBet;
         playerCredits += winnings;
         console.log("Congratulations! You won:" + winnings);
         winningsLabel.setText(winnings.toString());
         creditLabel.setText(playerCredits.toString());
     }
+    //you lost
     function youLostMessage() {
-        playerCredits - playerBet;
+        playerCredits -= playerBet;
         console.log("Sorry! Better luck next time!");
         winningsLabel.setText(winnings.toString());
         creditLabel.setText(playerCredits.toString());
     }
+    //reset button
     function resetButtonClicked() {
         playerCredits = 1000;
         winnings = 0;
-        jackpot = 5000;
+        jackpot = playerCredits * 25;
         playerBet = 0;
         creditLabel.setText(playerCredits.toString());
         winningsLabel.setText("0");
@@ -312,14 +317,20 @@
         middleReel.image = assets.getResult("blank");
         rightReel.image = assets.getResult("blank");
     }
+    //exit button
     function exitButtonClicked() {
         window.close();
+    }
+    function jackPotLabelUpdate() {
+        jackpot = playerCredits * 25;
+        jackPotLabel.setText(jackpot.toString());
     }
     // app logic goes here
     function Main() {
         buildInterface();
         interfaceLogic();
         resetButtonClicked();
+        jackPotLabelUpdate();
     }
     window.addEventListener("load", Preload);
 })();
