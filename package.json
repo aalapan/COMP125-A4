@@ -3,7 +3,24 @@
   "version": "1.0.0",
   "description": "Assignment 4 ",
   "main": "index.js",
-  "repository": "https://github.com/aalapan/COMP125-A4.git",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aalapan/COMP125-A4.git"
+  },
   "author": "aalapan <aalapan@my.centennialcollege.ca>",
-  "license": "MIT"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/aalapan/COMP125-A4/issues"
+  },
+  "homepage": "https://github.com/aalapan/COMP125-A4#readme",
+  "dependencies": {
+    "easeljs": "^1.0.2",
+    "soundjs": "^1.0.1",
+    "preloadjs": "^1.0.1",
+    "tweenjs": "^1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
 }
