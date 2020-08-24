@@ -1,3 +1,12 @@
+/*
+File name: slotmachine-master
+Author's name: Aileen Nicole Alapan
+Student Number 301108374
+Web site name: Slot Machine
+File description: COMP125 Assignment 4
+*/
+
+
 (function(){
     // Function scoped Variables
     let stage: createjs.Stage;
@@ -35,7 +44,7 @@
 
     let playerCredits = 1000;
     let winnings = 0;
-    let jackpot = playerCredits*25;
+    let jackpot = 10000;
     let playerBet = 0;
 
 
@@ -230,7 +239,7 @@
         stage.addChild(exitButton),
 
         // Labels
-        jackPotLabel = new UIObjects.Label("2000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
+        jackPotLabel = new UIObjects.Label("10000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
         stage.addChild(jackPotLabel);
 
         creditLabel = new UIObjects.Label("1000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X - 94, Config.Screen.CENTER_Y + 108, true);
@@ -379,7 +388,7 @@
     {
         playerCredits = 1000;
         winnings = 0;
-        jackpot = playerCredits * 25;
+        jackpot = 10000;
         playerBet = 0;
 
         creditLabel.setText(playerCredits.toString());
@@ -398,20 +407,12 @@
         window.close();
     }
 
-    function jackPotLabelUpdate():void
-    {
-        jackpot=playerCredits*25;
-        jackPotLabel.setText(jackpot.toString());
-    }
-
     // app logic goes here
     function Main():void
     {
         buildInterface();
         interfaceLogic();
-        resetButtonClicked();   
-        jackPotLabelUpdate();
-       
+        resetButtonClicked();      
     }
 
     window.addEventListener("load", Preload);

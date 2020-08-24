@@ -31,7 +31,7 @@
     var blank = 0;
     var playerCredits = 1000;
     var winnings = 0;
-    var jackpot = playerCredits * 25;
+    var jackpot = 10000;
     var playerBet = 0;
     var manifest = [
         { id: "background", src: "./Assets/images/background.png" },
@@ -198,7 +198,7 @@
             exitButton = new UIObjects.Button("exitButton", Config.Screen.CENTER_X - 300, Config.Screen.CENTER_Y, true);
         stage.addChild(exitButton),
             // Labels
-            jackPotLabel = new UIObjects.Label("2000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
+            jackPotLabel = new UIObjects.Label("10000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X, Config.Screen.CENTER_Y - 175, true);
         stage.addChild(jackPotLabel);
         creditLabel = new UIObjects.Label("1000", "20px", "Consolas", "#FF0000", Config.Screen.CENTER_X - 94, Config.Screen.CENTER_Y + 108, true);
         stage.addChild(creditLabel);
@@ -307,7 +307,7 @@
     function resetButtonClicked() {
         playerCredits = 1000;
         winnings = 0;
-        jackpot = playerCredits * 25;
+        jackpot = 10000;
         playerBet = 0;
         creditLabel.setText(playerCredits.toString());
         winningsLabel.setText("0");
@@ -321,16 +321,11 @@
     function exitButtonClicked() {
         window.close();
     }
-    function jackPotLabelUpdate() {
-        jackpot = playerCredits * 25;
-        jackPotLabel.setText(jackpot.toString());
-    }
     // app logic goes here
     function Main() {
         buildInterface();
         interfaceLogic();
         resetButtonClicked();
-        jackPotLabelUpdate();
     }
     window.addEventListener("load", Preload);
 })();
